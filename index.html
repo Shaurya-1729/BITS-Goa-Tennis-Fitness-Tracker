@@ -7,71 +7,60 @@
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-slate-900 min-h-screen flex items-center justify-center p-4">
+<body class="bg-slate-900 text-white min-h-screen">
 
-<div class="w-full max-w-md bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-700">
+<div class="max-w-5xl mx-auto p-6">
 
-    <div class="text-center mb-8">
-        <h1 class="text-4xl font-extrabold text-lime-400">
-            Tennis Team Tracker
+    <div class="text-center mb-10">
+
+        <h1 class="text-5xl font-bold text-lime-400">
+            Tennis Fitness Tracker
         </h1>
 
         <p class="text-slate-400 mt-3">
-            Login to track your weekly fitness progress
+            Team Fitness Leaderboards
         </p>
-    </div>
 
-    <form id="loginForm" class="space-y-5">
-
-        <div>
-            <label class="block text-sm text-slate-400 mb-2">
-                BITS ID
-            </label>
-
-            <input
-                type="text"
-                id="bitsId"
-                placeholder="2023B5A80993G"
-                required
-                class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:outline-none focus:border-lime-400"
-            >
-        </div>
-
-        <div>
-            <label class="block text-sm text-slate-400 mb-2">
-                Password
-            </label>
-
-            <input
-                type="password"
-                id="password"
-                placeholder="Enter password"
-                required
-                class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:outline-none focus:border-lime-400"
-            >
-        </div>
-
-        <div
-            id="errorMessage"
-            class="hidden text-red-400 text-sm text-center"
-        ></div>
-
-        <button
-            type="submit"
-            class="w-full bg-lime-500 hover:bg-lime-400 text-slate-900 font-bold py-3 rounded-lg transition"
+        <a
+            href="login.html"
+            class="inline-block mt-6 bg-lime-500 hover:bg-lime-400 text-black font-bold px-6 py-3 rounded-lg"
         >
             Login
-        </button>
+        </a>
 
-    </form>
+    </div>
 
-    <div class="mt-6 text-center text-xs text-slate-500">
-        Boys Team • Girls Team
+    <div class="grid md:grid-cols-2 gap-6">
+
+        <div class="bg-slate-800 rounded-xl p-6">
+
+            <h2 class="text-2xl font-bold text-blue-400 mb-4">
+                🏆 Boys Team
+            </h2>
+
+            <div id="boysLeaderboard">
+                Loading...
+            </div>
+
+        </div>
+
+        <div class="bg-slate-800 rounded-xl p-6">
+
+            <h2 class="text-2xl font-bold text-pink-400 mb-4">
+                🏆 Girls Team
+            </h2>
+
+            <div id="girlsLeaderboard">
+                Loading...
+            </div>
+
+        </div>
+
     </div>
 
 </div>
 
-<script type="module" src="./js/auth.js"></script>
+<script type="module" src="./js/leaderboard.js"></script>
 
 </body>
 </html>
