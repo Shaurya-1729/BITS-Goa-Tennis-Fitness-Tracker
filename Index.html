@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennis Fitness Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-white font-sans min-h-screen p-4 flex flex-col items-center">
+
+    <main class="w-full max-w-md bg-slate-800 rounded-2xl shadow-xl p-6 mt-4">
+        <header class="text-center mb-6">
+            <h1 class="text-2xl font-extrabold text-lime-400 tracking-wide uppercase">Tennis Team Tracker</h1>
+            <p class="text-slate-400 text-sm mt-1">Submit your weekly fitness progress</p>
+        </header>
+
+        <form name="weekly-fitness-logs" method="POST" data-netlify="true" class="space-y-5">
+            <input type="hidden" name="form-name" value="weekly-fitness-logs" />
+
+            <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Select Player</label>
+                <select name="Player Name" required class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:outline-none focus:border-lime-400">
+                    <option value="" disabled selected>Choose your name...</option>
+                    <option>Shaurya Awasthi</option>
+                    <option>Chaitanya S Rao</option>
+                    <option>Omkar Sathe</option>
+                    <option>Amber Yadav</option>
+                    <option>Girish Prajapat</option>
+                    <option>A Harren Narayan</option>
+                    <option>Shrish Lohiya</option>
+                    <option>Anamay Mittal</option>
+                    <option>Aryan Kotasthane</option>
+                    <option>Rushil Anikar</option>
+                    <option>D Ashwath</option>
+                    <option>Aaditya Lahori</option>
+                    <option>Bhavya Sharma</option>
+                    <option>Ruhika Panda</option>
+                    <option>Simran Parmar</option>
+                    <option>Ananya Mayawala</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Week Number</label>
+                <select name="Week" required class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:outline-none focus:border-lime-400">
+                    <option>Week 1</option><option>Week 2</option><option>Week 3</option><option>Week 4</option>
+                    <option>Week 5</option><option>Week 6</option><option>Week 7</option><option>Week 8</option>
+                </select>
+            </div>
+
+            <hr class="border-slate-700 my-4" />
+
+            <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Weekly 2k Run (Minutes)</label>
+                <input type="number" step="0.1" name="Weekly 2k Run (Mins)" placeholder="e.g. 7.45" required class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:outline-none focus:border-lime-400">
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Upper Body Workout (Sessions/Reps)</label>
+                <input type="text" name="Upper Body Workout" placeholder="e.g. 3 sessions / 50 pushups" required class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:outline-none focus:border-lime-400">
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Lower Body Workout (Sessions/Weight)</label>
+                <input type="text" name="Lower Body Workout" placeholder="e.g. 2 sessions / 80kg Squats" required class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:outline-none focus:border-lime-400">
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Sprints (Seconds)</label>
+                <input type="number" step="0.01" name="Sprints (Secs)" placeholder="e.g. 5.2" required class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:outline-none focus:border-lime-400">
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Court Drills (Sessions Completed)</label>
+                <input type="number" name="Court Drills (Sessions)" placeholder="e.g. 4" required class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:outline-none focus:border-lime-400">
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Injuries / Notes</label>
+                <textarea name="Notes" rows="2" placeholder="Shoulder tightness, rested Thursday..." class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:outline-none focus:border-lime-400"></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-lime-500 hover:bg-lime-400 text-slate-950 font-bold uppercase tracking-wide p-4 rounded-xl transition duration-200 mt-4 active:scale-95 shadow-lg">
+                Submit Weekly Progress
+            </button>
+        </form>
+    </main>
+</body>
+</html>
