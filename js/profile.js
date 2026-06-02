@@ -77,7 +77,7 @@ player["total points"] || 0;
 const submissionRef = doc(
   db,
   "weeklySubmissions",
-  `${player["bits id"]}_week1`
+  `${player["bits id"]}_${weekKey}`
 );
 
   const submissionSnap =
