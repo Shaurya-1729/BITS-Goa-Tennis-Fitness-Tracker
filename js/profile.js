@@ -33,6 +33,16 @@ document.getElementById("playerTeam")
 .innerText =
 `Team: ${player.team}`;
 
+document.getElementById("totalPoints")
+.innerText =
+player["total points"] || 0;
+
+const submissionRef = doc(
+  db,
+  "weeklySubmissions",
+  `${player["bits id"]}_week1`
+);
+
 const submissionSnap =
 await getDoc(submissionRef);
 
@@ -53,16 +63,6 @@ if (submissionSnap.exists()) {
   document.getElementById("court").value =
   data.court || 0;
 }
-
-document.getElementById("totalPoints")
-.innerText =
-player["total points"] || 0;
-
-const submissionRef = doc(
-  db,
-  "weeklySubmissions",
-  `${player["bits id"]}_week1`
-);
 
 function getTier(points) {
 
