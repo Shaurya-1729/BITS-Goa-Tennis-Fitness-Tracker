@@ -41,6 +41,7 @@ const submissionRef = doc(
   db,
   "weeklySubmissions",
   `${player["bits id"]}_week1`
+);
 
   const submissionSnap =
 await getDoc(submissionRef);
@@ -62,7 +63,6 @@ if (submissionSnap.exists()) {
   document.getElementById("court").value =
   data.court || 0;
 }
-);
 
 
 function getTier(points) {
