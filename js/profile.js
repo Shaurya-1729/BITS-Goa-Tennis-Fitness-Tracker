@@ -1,5 +1,12 @@
 import { db } from "./firebase-config.js";
+getDoc
+const trackerDoc =
+await getDoc(
+  doc(db, "settings", "tracker")
+);
 
+const currentWeek =
+trackerDoc.data().currentWeek;
 import {
   doc,
   setDoc,
@@ -102,7 +109,7 @@ document
     doc(
       db,
       "weeklySubmissions",
-      `${player["bits id"]}_week1`
+      `${player["bits id"]}_week${currentWeek}`
     ),
     {
       "bits id":
