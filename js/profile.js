@@ -20,6 +20,43 @@ JSON.parse(
 sessionStorage.getItem("playerData")
 );
 
+function getWeekKey() {
+
+  const today = new Date();
+
+  const day = today.getDay();
+
+  const diff =
+    today.getDate() -
+    day +
+    (day === 0 ? -6 : 1);
+
+  const monday =
+    new Date(today);
+
+  monday.setDate(diff);
+
+  return monday
+    .toISOString()
+    .split("T")[0];
+}
+const weekKey = getWeekKey();
+
+const weekStart =
+new Date(weekKey);
+
+const weekEnd =
+new Date(weekStart);
+
+weekEnd.setDate(
+  weekStart.getDate() + 6
+);
+
+document.getElementById(
+  "weekDisplay"
+).innerText =
+`Training Week: ${weekStart.toLocaleDateString()} - ${weekEnd.toLocaleDateString()}`;
+
 console.log("PLAYER DATA:", player);
 
 if (!player) {
@@ -134,7 +171,7 @@ document
     doc(
       db,
       "weeklySubmissions",
-     `${player["bits id"]}_week1`
+     `${player["bits id"]}_${weekKey}`
     ),
     {
       "bits id":
