@@ -2,7 +2,9 @@ import { db } from "./firebase-config.js";
 
 import {
   doc,
+  getDoc,
   setDoc,
+  updateDoc,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
@@ -31,9 +33,36 @@ document.getElementById("playerTeam")
 .innerText =
 `Team: ${player.team}`;
 
+const submissionSnap =
+await getDoc(submissionRef);
+
+if (submissionSnap.exists()) {
+
+  const data =
+  submissionSnap.data();
+
+  document.getElementById("runs").value =
+  data.runs || 0;
+
+  document.getElementById("upper").value =
+  data.upper || 0;
+
+  document.getElementById("lower").value =
+  data.lower || 0;
+
+  document.getElementById("court").value =
+  data.court || 0;
+}
+
 document.getElementById("totalPoints")
 .innerText =
 player["total points"] || 0;
+
+const submissionRef = doc(
+  db,
+  "weeklySubmissions",
+  `${player["bits id"]}_week1`
+);
 
 function getTier(points) {
 
@@ -128,6 +157,17 @@ document
       serverTimestamp()
     }
   );
+
+  await updateDoc(
+  doc(
+    db,
+    "players",
+    player["bits id"]
+  ),
+  {
+    "total points": totalPoints
+  }
+);
 
   document
   .getElementById("successMsg")
