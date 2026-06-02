@@ -1,0 +1,135 @@
+import { db } from "./firebase-config.js";
+
+import {
+  doc,
+  setDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+
+import {
+  getAuth,
+  signOut
+} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+
+const auth = getAuth();
+
+const player =
+JSON.parse(
+sessionStorage.getItem("playerData")
+);
+
+if (!player) {
+  window.location.href = "login.html";
+}
+
+document.getElementById("playerName")
+.innerText = player.name;
+
+document.getElementById("playerTeam")
+.innerText =
+`Team: ${player.team}`;
+
+document.getElementById("totalPoints")
+.innerText =
+player["total points"] || 0;
+
+function getTier(points) {
+
+  if (points >= 6) {
+    return "Sexy 🔥";
+  }
+
+  if (points === 5) {
+    return "Very Good ⭐";
+  }
+
+  if (points === 4) {
+    return "Good 👍";
+  }
+
+  return "Keep Going";
+}
+
+document.getElementById("playerTier")
+.innerText =
+getTier(
+player["total points"] || 0
+);
+
+document
+.getElementById("logoutBtn")
+.addEventListener("click", async () => {
+
+  await signOut(auth);
+
+  sessionStorage.clear();
+
+  window.location.href =
+  "login.html";
+});
+
+document
+.getElementById("submitBtn")
+.addEventListener("click", async () => {
+
+  const runs =
+  Number(
+    document.getElementById("runs").value
+  ) || 0;
+
+  const upper =
+  Number(
+    document.getElementById("upper").value
+  ) || 0;
+
+  const lower =
+  Number(
+    document.getElementById("lower").value
+  ) || 0;
+
+  const court =
+  Number(
+    document.getElementById("court").value
+  ) || 0;
+
+  const total =
+  runs +
+  upper +
+  lower +
+  court;
+
+  await setDoc(
+    doc(
+      db,
+      "weeklySubmissions",
+      `${player["bits id"]}_week1`
+    ),
+    {
+      "bits id":
+      player["bits id"],
+
+      name:
+      player.name,
+
+      team:
+      player.team,
+
+      runs,
+      upper,
+      lower,
+      court,
+
+      "total points":
+      total,
+
+      submittedAt:
+      serverTimestamp()
+    }
+  );
+
+  document
+  .getElementById("successMsg")
+  .classList
+  .remove("hidden");
+
+});
