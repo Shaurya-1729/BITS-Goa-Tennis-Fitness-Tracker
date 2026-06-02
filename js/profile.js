@@ -43,26 +43,6 @@ const submissionRef = doc(
   `${player["bits id"]}_week1`
 );
 
-const submissionSnap =
-await getDoc(submissionRef);
-
-if (submissionSnap.exists()) {
-
-  const data =
-  submissionSnap.data();
-
-  document.getElementById("runs").value =
-  data.runs || 0;
-
-  document.getElementById("upper").value =
-  data.upper || 0;
-
-  document.getElementById("lower").value =
-  data.lower || 0;
-
-  document.getElementById("court").value =
-  data.court || 0;
-}
 
 function getTier(points) {
 
