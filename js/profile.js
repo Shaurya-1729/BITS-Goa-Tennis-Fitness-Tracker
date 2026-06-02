@@ -1,17 +1,4 @@
 import { db } from "./firebase-config.js";
-getDoc
-const trackerDoc =
-await getDoc(
-  doc(db, "settings", "tracker")
-);
-
-const currentWeek =
-trackerDoc.data().currentWeek;
-import {
-  doc,
-  setDoc,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
 import {
   getAuth,
