@@ -167,6 +167,10 @@ document
   lower +
   court;
 
+  console.log("PLAYER:", player);
+console.log("BITS ID:", player["bits id"]);
+console.log("WEEK KEY:", weekKey);
+  
   await setDoc(
     doc(
       db,
