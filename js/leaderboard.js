@@ -35,28 +35,28 @@ async function loadLeaderboards() {
   });
 
   boys.sort(
-    (a,b) => b.totalPoints - a.totalPoints
-  );
+  (a,b) => (b["total points"] || 0) - (a["total points"] || 0)
+);
 
-  girls.sort(
-    (a,b) => b.totalPoints - a.totalPoints
-  );
+girls.sort(
+  (a,b) => (b["total points"] || 0) - (a["total points"] || 0)
+);
 
   boysContainer.innerHTML =
-    boys.map((p,index)=>`
-      <div class="flex justify-between py-2 border-b border-slate-700">
-        <span>#${index+1} ${p.name}</span>
-        <span>${p.totalPoints}</span>
-      </div>
-    `).join("");
+  boys.map((p,index)=>`
+    <div class="flex justify-between py-2 border-b border-slate-700">
+      <span>#${index+1} ${p.name || "Missing Name"}</span>
+      <span>${p["total points"] || 0}</span>
+    </div>
+  `).join("");
 
-  girlsContainer.innerHTML =
-    girls.map((p,index)=>`
-      <div class="flex justify-between py-2 border-b border-slate-700">
-        <span>#${index+1} ${p.name}</span>
-        <span>${p.totalPoints}</span>
-      </div>
-    `).join("");
+girlsContainer.innerHTML =
+  girls.map((p,index)=>`
+    <div class="flex justify-between py-2 border-b border-slate-700">
+      <span>#${index+1} ${p.name || "Missing Name"}</span>
+      <span>${p["total points"] || 0}</span>
+    </div>
+  `).join("");
 
 }
 
