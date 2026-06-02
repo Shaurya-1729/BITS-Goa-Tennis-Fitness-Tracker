@@ -1,22 +1,119 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Player Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Player Dashboard</title>
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-900 text-white min-h-screen flex items-center justify-center">
 
-<div class="bg-slate-800 p-10 rounded-xl text-center">
+<body class="bg-slate-900 text-white min-h-screen p-4">
 
-    <h1 class="text-4xl font-bold text-lime-400 mb-4">
-        Player Dashboard
-    </h1>
+<div class="max-w-3xl mx-auto">
 
-    <p class="text-slate-400">
-        Login successful.
-    </p>
+    <div class="bg-slate-800 rounded-2xl shadow-xl p-6">
+
+        <div class="flex justify-between items-center mb-6">
+
+            <div>
+                <h1 id="playerName"
+                    class="text-3xl font-bold text-lime-400">
+                    Loading...
+                </h1>
+
+                <p id="playerTeam"
+                   class="text-slate-400 mt-1">
+                   Team
+                </p>
+            </div>
+
+            <button
+                id="logoutBtn"
+                class="bg-red-500 hover:bg-red-400 text-black font-bold px-4 py-2 rounded-lg">
+                Logout
+            </button>
+
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4 mb-6">
+
+            <div class="bg-slate-700 rounded-xl p-4">
+                <p class="text-slate-400 text-sm">
+                    Total Points
+                </p>
+
+                <p id="totalPoints"
+                   class="text-3xl font-bold mt-2">
+                    0
+                </p>
+            </div>
+
+            <div class="bg-slate-700 rounded-xl p-4">
+                <p class="text-slate-400 text-sm">
+                    Current Status
+                </p>
+
+                <p id="playerTier"
+                   class="text-3xl font-bold mt-2">
+                    Keep Going
+                </p>
+            </div>
+
+        </div>
+
+        <div class="bg-slate-700 rounded-xl p-5">
+
+            <h2 class="text-xl font-bold mb-4">
+                Weekly Progress
+            </h2>
+
+            <div class="space-y-4">
+
+                <div class="flex justify-between items-center">
+                    <span>Weekly 2K Runs</span>
+                    <input id="runs" type="number" min="0"
+                    class="w-24 bg-slate-800 rounded p-2">
+                </div>
+
+                <div class="flex justify-between items-center">
+                    <span>Upper Body Workout</span>
+                    <input id="upper" type="number" min="0"
+                    class="w-24 bg-slate-800 rounded p-2">
+                </div>
+
+                <div class="flex justify-between items-center">
+                    <span>Lower Body Workout</span>
+                    <input id="lower" type="number" min="0"
+                    class="w-24 bg-slate-800 rounded p-2">
+                </div>
+
+                <div class="flex justify-between items-center">
+                    <span>Court Drills</span>
+                    <input id="court" type="number" min="0"
+                    class="w-24 bg-slate-800 rounded p-2">
+                </div>
+
+            </div>
+
+            <button
+                id="submitBtn"
+                class="w-full mt-6 bg-lime-500 hover:bg-lime-400 text-black font-bold py-3 rounded-lg">
+                Submit Week
+            </button>
+
+            <div
+                id="successMsg"
+                class="hidden mt-4 text-center text-green-400">
+                Week submitted successfully
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
+
+<script type="module" src="./js/profile.js"></script>
 
 </body>
 </html>
