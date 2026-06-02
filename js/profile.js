@@ -25,6 +25,8 @@ JSON.parse(
 sessionStorage.getItem("playerData")
 );
 
+console.log("PLAYER DATA:", player);
+
 if (!player) {
   window.location.href = "login.html";
 }
@@ -42,15 +44,15 @@ player["total points"] || 0;
 
 function getTier(points) {
 
-  if (points >= 6) {
+  if (points >= 13) {
     return "Sexy 🔥";
   }
 
-  if (points === 5) {
+  if (points >= 9) {
     return "Very Good ⭐";
   }
 
-  if (points === 4) {
+  if (points >= 5) {
     return "Good 👍";
   }
 
