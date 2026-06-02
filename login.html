@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tennis Fitness Tracker Login</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-900 min-h-screen flex items-center justify-center p-4">
+
+<div class="w-full max-w-md bg-slate-800 rounded-2xl shadow-xl border border-slate-700 p-8">
+
+    <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-lime-400">
+            Tennis Team Tracker
+        </h1>
+
+        <p class="text-slate-400 mt-3">
+            Login using your BITS ID
+        </p>
+    </div>
+
+    <form id="loginForm" class="space-y-5">
+
+        <div>
+            <label class="block text-sm text-slate-400 mb-2">
+                BITS ID
+            </label>
+
+            <input
+                type="text"
+                id="bitsId"
+                placeholder="2023B5A80993G"
+                required
+                class="w-full p-3 rounded-lg bg-slate-700 border border-slate-600 text-white focus:outline-none focus:border-lime-400"
+            >
+        </div>
+
+        <div>
+            <label class="block text-sm text-slate-400 mb-2">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter Password"
+                required
+                class="w-full p-3 rounded-lg bg-slate-700 border border-slate-600 text-white focus:outline-none focus:border-lime-400"
+            >
+        </div>
+
+        <div
+            id="errorMessage"
+            class="hidden text-red-400 text-center text-sm"
+        ></div>
+
+        <button
+            type="submit"
+            class="w-full bg-lime-500 hover:bg-lime-400 text-black font-bold py-3 rounded-lg transition"
+        >
+            Login
+        </button>
+
+    </form>
+
+    <div class="mt-6 text-center">
+        <a
+            href="index.html"
+            class="text-slate-400 hover:text-white text-sm"
+        >
+            ← Back to Leaderboard
+        </a>
+    </div>
+
+</div>
+
+<script type="module" src="./js/auth.js"></script>
+
+</body>
+</html>
