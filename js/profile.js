@@ -17,8 +17,28 @@ const auth = getAuth();
 
 const player =
 JSON.parse(
-sessionStorage.getItem("playerData")
+  sessionStorage.getItem(
+    "playerData"
+  )
 );
+
+if (!player) {
+
+  window.location.href =
+    "login.html";
+}
+
+/* ADMIN CHECK */
+
+if (player.role === "admin") {
+
+  document
+    .getElementById(
+      "adminPanel"
+    )
+    .classList
+    .remove("hidden");
+}
 
 function getWeekKey() {
 
