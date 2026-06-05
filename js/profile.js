@@ -237,3 +237,148 @@ console.log("WEEK KEY:", weekKey);
   .remove("hidden");
 
 });
+
+async function loadAdminPanel() {
+
+  if (player.role !== "admin") {
+    return;
+  }
+
+  const {
+    collection,
+    getDocs
+  } = await import(
+    "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js"
+  );
+
+  const playersSnap =
+    await getDocs(
+      collection(
+        db,
+        "players"
+      )
+    );
+
+  const submissionsSnap =
+    await getDocs(
+      collection(
+        db,
+        "weeklySubmissions"
+      )
+    );
+
+  const players = [];
+  const submissions = [];
+  const submittedIds = new Set();
+
+  playersSnap.forEach(doc => {
+    players.push(doc.data());
+  });
+
+  submissionsSnap.forEach(doc => {
+
+    const data =
+      doc.data();
+
+    if (
+      doc.id.endsWith(
+        "_" + weekKey
+      )
+    ) {
+
+      submissions.push(
+        data
+      );
+
+      submittedIds.add(
+        data["bits id"]
+      );
+    }
+  });
+
+  const boys =
+    players.filter(
+      p =>
+      p.team === "boys"
+    );
+
+  const girls =
+    players.filter(
+      p =>
+      p.team === "girls"
+    );
+
+  const boysMissing =
+    boys.filter(
+      p =>
+      !submittedIds.has(
+        p["bits id"]
+      )
+    );
+
+  const girlsMissing =
+    girls.filter(
+      p =>
+      !submittedIds.has(
+        p["bits id"]
+      )
+    );
+
+  document.getElementById(
+    "boysSubmitted"
+  ).innerText =
+  `Submitted: ${
+    boys.length -
+    boysMissing.length
+  } / ${boys.length}`;
+
+  document.getElementById(
+    "girlsSubmitted"
+  ).innerText =
+  `Submitted: ${
+    girls.length -
+    girlsMissing.length
+  } / ${girls.length}`;
+
+  document.getElementById(
+    "boysMissing"
+  ).innerHTML =
+  boysMissing
+  .map(
+    p =>
+    `<li>❌ ${p.name}</li>`
+  )
+  .join("");
+
+  document.getElementById(
+    "girlsMissing"
+  ).innerHTML =
+  girlsMissing
+  .map(
+    p =>
+    `<li>❌ ${p.name}</li>`
+  )
+  .join("");
+
+  document.getElementById(
+    "submissionList"
+  ).innerHTML =
+  submissions
+  .sort(
+    (a,b) =>
+    (b["total points"] || 0)
+    -
+    (a["total points"] || 0)
+  )
+  .map(
+    p => `
+      <div class="flex justify-between bg-slate-800 p-3 rounded">
+        <span>${p.name}</span>
+        <span>${p["total points"] || 0} pts</span>
+      </div>
+    `
+  )
+  .join("");
+}
+
+loadAdminPanel();
