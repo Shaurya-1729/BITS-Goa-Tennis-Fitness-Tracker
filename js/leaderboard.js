@@ -28,15 +28,26 @@ function getTier(points) {
   return "🔴 Needs Work";
 }
 
+function getMedal(index) {
+
+  if (index === 0) return "🥇";
+  if (index === 1) return "🥈";
+  if (index === 2) return "🥉";
+
+  return `#${index + 1}`;
+}
+
 async function loadLeaderboards() {
 
   const snapshot =
-    await getDocs(collection(db, "players"));
+    await getDocs(
+      collection(db, "players")
+    );
 
   const boys = [];
   const girls = [];
 
-  snapshot.forEach(doc => {
+  snapshot.forEach((doc) => {
 
     const player = doc.data();
 
@@ -48,77 +59,97 @@ async function loadLeaderboards() {
 
       girls.push(player);
     }
-
   });
 
   boys.sort(
-  (a,b) => (b["total points"] || 0) - (a["total points"] || 0)
-);
+    (a, b) =>
+      (b["total points"] || 0) -
+      (a["total points"] || 0)
+  );
 
-girls.sort(
-  (a,b) => (b["total points"] || 0) - (a["total points"] || 0)
-);
+  girls.sort(
+    (a, b) =>
+      (b["total points"] || 0) -
+      (a["total points"] || 0)
+  );
 
   boysContainer.innerHTML =
-  boys.map((p,index)=>`
-  const medal =
-  index === 0 ? "🥇" :
-  index === 1 ? "🥈" :
-  index === 2 ? "🥉" :
-  `#${medal}`;
-   <li class="flex justify-between items-center py-3 border-b border-slate-600">
-      <span>#${index + 1} ${p.name || "Missing Name"}</span>
-     <div class="flex items-center gap-3">
+    boys.map((p, index) => {
 
-  <span class="font-bold text-lg">
-    ${p["total points"] || 0}
-  </span>
+      const medal =
+        getMedal(index);
 
-  <span class="
-    text-sm
-    px-3
-    py-1
-    rounded-full
-    bg-slate-700
-    whitespace-nowrap
-  ">
-    ${getTier(p["total points"] || 0)}
-  </span>
+      return `
+        <li class="flex justify-between items-center py-3 border-b border-slate-600">
 
-</div>
-    </div>
-  `).join("");
+          <div class="flex items-center gap-3">
+            <span class="font-semibold">
+              ${medal}
+            </span>
 
-girlsContainer.innerHTML =
-  girls.map((p,index)=>`
-  const medal =
-  index === 0 ? "🥇" :
-  index === 1 ? "🥈" :
-  index === 2 ? "🥉" :
-  `#${medal}`;
-    <div class="flex justify-between py-2 border-b border-slate-700">
-      <span>#${index + 1} ${p.name || "Missing Name"}</span>
-     <div class="flex items-center gap-3">
+            <span>
+              ${p.name || "Missing Name"}
+            </span>
+          </div>
 
-  <span class="font-bold text-lg">
-    ${p["total points"] || 0}
-  </span>
+          <div class="flex items-center gap-3">
 
-  <span class="
-    text-sm
-    px-3
-    py-1
-    rounded-full
-    bg-slate-700
-    whitespace-nowrap
-  ">
-    ${getTier(p["total points"] || 0)}
-  </span>
+            <span class="font-bold text-lg">
+              ${p["total points"] || 0}
+            </span>
 
-</div>
-    </div>
-  `).join("");
+            <span
+              class="text-sm px-3 py-1 rounded-full bg-slate-700 whitespace-nowrap"
+            >
+              ${getTier(
+                p["total points"] || 0
+              )}
+            </span>
 
+          </div>
+
+        </li>
+      `;
+    }).join("");
+
+  girlsContainer.innerHTML =
+    girls.map((p, index) => {
+
+      const medal =
+        getMedal(index);
+
+      return `
+        <li class="flex justify-between items-center py-3 border-b border-slate-600">
+
+          <div class="flex items-center gap-3">
+            <span class="font-semibold">
+              ${medal}
+            </span>
+
+            <span>
+              ${p.name || "Missing Name"}
+            </span>
+          </div>
+
+          <div class="flex items-center gap-3">
+
+            <span class="font-bold text-lg">
+              ${p["total points"] || 0}
+            </span>
+
+            <span
+              class="text-sm px-3 py-1 rounded-full bg-slate-700 whitespace-nowrap"
+            >
+              ${getTier(
+                p["total points"] || 0
+              )}
+            </span>
+
+          </div>
+
+        </li>
+      `;
+    }).join("");
 }
 
 loadLeaderboards();
