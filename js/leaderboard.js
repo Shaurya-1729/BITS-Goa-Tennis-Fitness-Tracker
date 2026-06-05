@@ -11,6 +11,25 @@ const boysContainer =
 const girlsContainer =
   document.getElementById("girlsLeaderboard");
 
+function getWeekKey() {
+
+  const today = new Date();
+
+  const day = today.getDay();
+
+  const diff =
+    today.getDate() -
+    day +
+    (day === 0 ? -6 : 1);
+
+  const monday =
+    new Date(today);
+
+  monday.setDate(diff);
+
+  return monday;
+}
+
 function getTier(points) {
 
   if (points >= 13) {
@@ -36,6 +55,7 @@ function getMedal(index) {
 
   return `#${index + 1}`;
 }
+
 
 async function loadLeaderboards() {
 
@@ -151,5 +171,36 @@ async function loadLeaderboards() {
       `;
     }).join("");
 }
+
+const weekStart =
+  getWeekKey();
+
+const weekEnd =
+  new Date(weekStart);
+
+weekEnd.setDate(
+  weekStart.getDate() + 6
+);
+
+document.getElementById(
+  "currentWeek"
+).innerText =
+  `Current Training Week: ${
+    weekStart.toLocaleDateString(
+      "en-GB",
+      {
+        day: "numeric",
+        month: "short"
+      }
+    )
+  } - ${
+    weekEnd.toLocaleDateString(
+      "en-GB",
+      {
+        day: "numeric",
+        month: "short"
+      }
+    )
+  }`;
 
 loadLeaderboards();
