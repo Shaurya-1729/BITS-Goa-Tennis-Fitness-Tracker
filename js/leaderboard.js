@@ -14,18 +14,18 @@ const girlsContainer =
 function getTier(points) {
 
   if (points >= 13) {
-    return "🔥 Sexy";
+    return "🔥 Elite";
   }
 
   if (points >= 9) {
-    return "⭐ Very Good";
+    return "⭐ Excellent";
   }
 
-  if (points >= 5) {
-    return "👍 Good";
+  if (points >= 4) {
+    return "👍 Keep Going";
   }
 
-  return "💪 Keep Going";
+  return "🔴 Needs Work";
 }
 
 async function loadLeaderboards() {
@@ -61,23 +61,61 @@ girls.sort(
 
   boysContainer.innerHTML =
   boys.map((p,index)=>`
-    <div class="flex justify-between py-2 border-b border-slate-700">
-      <span>#${index+1} ${p.name || "Missing Name"}</span>
-     <span>
-  ${p["total points"] || 0}
-  ${getTier(p["total points"] || 0)}
-</span>
+  const medal =
+  index === 0 ? "🥇" :
+  index === 1 ? "🥈" :
+  index === 2 ? "🥉" :
+  `#${medal}`;
+   <li class="flex justify-between items-center py-3 border-b border-slate-600">
+      <span>#${index + 1} ${p.name || "Missing Name"}</span>
+     <div class="flex items-center gap-3">
+
+  <span class="font-bold text-lg">
+    ${p["total points"] || 0}
+  </span>
+
+  <span class="
+    text-sm
+    px-3
+    py-1
+    rounded-full
+    bg-slate-700
+    whitespace-nowrap
+  ">
+    ${getTier(p["total points"] || 0)}
+  </span>
+
+</div>
     </div>
   `).join("");
 
 girlsContainer.innerHTML =
   girls.map((p,index)=>`
+  const medal =
+  index === 0 ? "🥇" :
+  index === 1 ? "🥈" :
+  index === 2 ? "🥉" :
+  `#${medal}`;
     <div class="flex justify-between py-2 border-b border-slate-700">
-      <span>#${index+1} ${p.name || "Missing Name"}</span>
-      <span>
-  ${p["total points"] || 0}
-  ${getTier(p["total points"] || 0)}
-</span>
+      <span>#${index + 1} ${p.name || "Missing Name"}</span>
+     <div class="flex items-center gap-3">
+
+  <span class="font-bold text-lg">
+    ${p["total points"] || 0}
+  </span>
+
+  <span class="
+    text-sm
+    px-3
+    py-1
+    rounded-full
+    bg-slate-700
+    whitespace-nowrap
+  ">
+    ${getTier(p["total points"] || 0)}
+  </span>
+
+</div>
     </div>
   `).join("");
 
