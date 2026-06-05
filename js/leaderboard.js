@@ -11,6 +11,23 @@ const boysContainer =
 const girlsContainer =
   document.getElementById("girlsLeaderboard");
 
+function getTier(points) {
+
+  if (points >= 13) {
+    return "🔥 Sexy";
+  }
+
+  if (points >= 9) {
+    return "⭐ Very Good";
+  }
+
+  if (points >= 5) {
+    return "👍 Good";
+  }
+
+  return "💪 Keep Going";
+}
+
 async function loadLeaderboards() {
 
   const snapshot =
@@ -46,7 +63,10 @@ girls.sort(
   boys.map((p,index)=>`
     <div class="flex justify-between py-2 border-b border-slate-700">
       <span>#${index+1} ${p.name || "Missing Name"}</span>
-      <span>${p["total points"] || 0}</span>
+     <span>
+  ${p["total points"] || 0}
+  ${getTier(p["total points"] || 0)}
+</span>
     </div>
   `).join("");
 
@@ -54,7 +74,10 @@ girlsContainer.innerHTML =
   girls.map((p,index)=>`
     <div class="flex justify-between py-2 border-b border-slate-700">
       <span>#${index+1} ${p.name || "Missing Name"}</span>
-      <span>${p["total points"] || 0}</span>
+      <span>
+  ${p["total points"] || 0}
+  ${getTier(p["total points"] || 0)}
+</span>
     </div>
   `).join("");
 
