@@ -62,19 +62,8 @@ if (form) {
                 JSON.stringify(playerData)
             );
 
-            if (
-                playerData.role === "admin"
-            ) {
-
-                window.location.href =
-                    "admin.html";
-
-            } else {
-
-                window.location.href =
-                    "profile.html";
-            }
-
+           window.location.href =
+    "profile.html";
         } catch (error) {
 
             document
