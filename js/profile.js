@@ -523,23 +523,19 @@ submissions.sort((a, b) => {
 
       function getStatus(points) {
 
-  if (points >= 13) {
-    return "Elite";
-  }
-
   if (points >= 9) {
-    return "Excellent";
+    return "🔥 Elite";
   }
 
   if (points >= 6) {
-    return "Very Good";
+    return "⭐ Excellent";
   }
 
   if (points >= 4) {
-    return "Keep Going";
+    return "👍 Keep Going";
   }
 
-  return "Needs Work";
+  return "🔴 Needs Work";
 }
 
 submissions.forEach(d => {
