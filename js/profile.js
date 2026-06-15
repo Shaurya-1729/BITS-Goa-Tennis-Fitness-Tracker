@@ -526,7 +526,11 @@ snapshot.forEach(doc => {
 
   const d = doc.data();
 
-  submissions.push(d);
+  submissions.push({
+    id: doc.id,
+    week: doc.id.split("_")[1],
+    ...d
+  });
 
 });
 
@@ -560,30 +564,31 @@ submissions.sort((a, b) => {
 
 submissions.forEach(d => {
 
- rows.push([
+  rows.push([
 
-  d.name || "",
+    d.name || "",
 
-  d["bits id"] || "",
+    d["bits id"] || "",
 
-  d.team || "",
+    d.team || "",
 
-  doc.id.split("_")[1] || "",
+    d.week || "",
 
-  d.runs || 0,
+    d.runs || 0,
 
-  d.upper || 0,
+    d.upper || 0,
 
-  d.lower || 0,
+    d.lower || 0,
 
-  d.court || 0,
+    d.court || 0,
 
-  d["total points"] || 0,
+    d["total points"] || 0,
 
-  d.submittedAt?.toDate?.()
-    ?.toLocaleString?.() || ""
+    d.submittedAt?.toDate?.()
+      ?.toLocaleString?.() || ""
 
-]);
+  ]);
+
 
 });
 
