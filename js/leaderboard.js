@@ -32,11 +32,11 @@ function getWeekKey() {
 
 function getTier(points) {
 
-  if (points >= 13) {
+  if (points >= 9) {
     return "🔥 Elite";
   }
 
-  if (points >= 9) {
+  if (points >= 6) {
     return "⭐ Excellent";
   }
 
