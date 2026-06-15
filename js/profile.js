@@ -125,6 +125,7 @@ if (submissionSnap.exists()) {
   document.getElementById("court").value =
   data.court || 0;
 
+
     document.getElementById(
     "activitySummary"
   ).innerHTML = `
@@ -146,6 +147,10 @@ if (submissionSnap.exists()) {
       <div>
         🎾 Court Drills: ${data.court || 0}
       </div>
+
+      <div class="mt-2 text-slate-400">
+  📝 ${p.notes || "No notes"}
+</div>
 
     </div>
 
