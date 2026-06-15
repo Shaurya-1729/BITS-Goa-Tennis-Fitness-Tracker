@@ -149,7 +149,7 @@ if (submissionSnap.exists()) {
       </div>
 
       <div class="mt-2 text-slate-400">
-  📝 ${p.notes || "No notes"}
+  📝 ${data.notes || "No notes"}
 </div>
 
     </div>
