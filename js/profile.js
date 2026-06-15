@@ -528,14 +528,14 @@ submissions.sort((a, b) => {
   }
 
   if (points >= 9) {
+    return "Excellent";
+  }
+
+  if (points >= 6) {
     return "Very Good";
   }
 
-  if (points >= 5) {
-    return "Good";
-  }
-
-  if (points >= 1) {
+  if (points >= 4) {
     return "Keep Going";
   }
 
