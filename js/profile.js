@@ -105,8 +105,12 @@ await getDoc(submissionRef);
 
 if (submissionSnap.exists()) {
 
-  const data =
-  submissionSnap.data();
+    alert(
+      "This week's submission is already locked."
+    );
+
+    return;
+  }
 
   document.getElementById("runs").value =
   data.runs || 0;
@@ -119,6 +123,35 @@ if (submissionSnap.exists()) {
 
   document.getElementById("court").value =
   data.court || 0;
+
+  document.getElementById("runs")
+    .disabled = true;
+
+  document.getElementById("upper")
+    .disabled = true;
+
+  document.getElementById("lower")
+    .disabled = true;
+
+  document.getElementById("court")
+    .disabled = true;
+
+  document.getElementById("submitBtn")
+    .disabled = true;
+
+  document.getElementById("submitBtn")
+    .innerText = "Week Locked";
+
+  document.getElementById("submitBtn")
+    .classList.add(
+      "opacity-50"
+    );
+
+  document.getElementById(
+    "lockedMessage"
+  ).classList.remove(
+    "hidden"
+  );
 }
 
 
