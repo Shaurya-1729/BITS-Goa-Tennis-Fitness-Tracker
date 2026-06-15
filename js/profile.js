@@ -479,8 +479,7 @@ if (
       );
 
       const rows = [];
-
-      rows.push([
+rows.push([
   "Name",
   "BITS ID",
   "Team",
@@ -491,6 +490,7 @@ if (
   "Court Drills",
   "Total Points",
   "Current Status",
+  "Notes",
   "Submission Date"
 ]);
      const submissions = [];
@@ -552,34 +552,22 @@ submissions.sort((a, b) => {
 }
 
 submissions.forEach(d => {
+  
 
-  rows.push([
-
+ rows.push([
   d.name || "",
-
   d["bits id"] || "",
-
   d.team || "",
-
   d.week || "",
-
   d.runs || 0,
-
   d.upper || 0,
-
   d.lower || 0,
-
   d.court || 0,
-
   d["total points"] || 0,
-
-  getStatus(
-    d["total points"] || 0
-  ),
-
+  getTier(d["total points"] || 0),
+  d.notes || "",
   d.submittedAt?.toDate?.()
     ?.toLocaleString?.() || ""
-
 ]);
 
 
