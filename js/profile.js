@@ -5,8 +5,10 @@ import {
   getDoc,
   setDoc,
   updateDoc,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+  serverTimestamp,
+  collection,
+  getDocs
+} from "...firebase-firestore.js";
 
 import {
   getAuth,
@@ -480,3 +482,114 @@ submissions
 }
 
 loadAdminPanel();
+
+const downloadBtn =
+document.getElementById(
+  "downloadCsvBtn"
+);
+
+if (
+  downloadBtn &&
+  player.role === "admin"
+) {
+
+  downloadBtn.addEventListener(
+    "click",
+    async () => {
+
+      const snapshot =
+      await getDocs(
+        collection(
+          db,
+          "weeklySubmissions"
+        )
+      );
+
+      const rows = [];
+
+      rows.push([
+        "Name",
+        "BITS ID",
+        "Team",
+        "Runs",
+        "Upper Body",
+        "Lower Body",
+        "Court Drills",
+        "Total Points",
+        "Submitted At"
+      ]);
+
+      snapshot.forEach(doc => {
+
+        const d =
+        doc.data();
+
+        rows.push([
+          d.name || "",
+          d["bits id"] || "",
+          d.team || "",
+          d.runs || 0,
+          d.upper || 0,
+          d.lower || 0,
+          d.court || 0,
+          d["total points"] || 0,
+          d.submittedAt?.toDate?.()
+            ?.toLocaleString?.() || ""
+        ]);
+
+      });
+
+      const csv =
+      rows
+      .map(row =>
+        row
+        .map(value =>
+          `"${value}"`
+        )
+        .join(",")
+      )
+      .join("\n");
+
+      const blob =
+      new Blob(
+        [csv],
+        {
+          type:
+          "text/csv;charset=utf-8;"
+        }
+      );
+
+      const url =
+      URL.createObjectURL(
+        blob
+      );
+
+      const link =
+      document.createElement(
+        "a"
+      );
+
+      link.href =
+      url;
+
+      link.download =
+      "Tennis_Fitness_Semester_Data.csv";
+
+      document.body
+      .appendChild(
+        link
+      );
+
+      link.click();
+
+      document.body
+      .removeChild(
+        link
+      );
+
+      URL.revokeObjectURL(
+        url
+      );
+    }
+  );
+}
