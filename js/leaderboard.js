@@ -100,33 +100,34 @@ async function loadLeaderboards() {
         getMedal(index);
 
       return `
-        <li class="flex justify-between items-center py-3 border-b border-slate-600">
+        <li class="flex justify-between items-center gap-2 py-3 border-b border-slate-600">
 
-          <div class="flex items-center gap-3">
-            <span class="font-semibold">
-              ${medal}
-            </span>
+          <div class="flex items-center gap-3 flex-1 min-w-0">
 
-            <span>
-              ${p.name || "Missing Name"}
-            </span>
-          </div>
+  <span class="font-semibold">
+    ${medal}
+  </span>
 
-          <div class="flex items-center gap-3">
+  <span class="truncate">
+    ${p.name || "Missing Name"}
+  </span>
 
-            <span class="font-bold text-lg">
-              ${p["total points"] || 0}
-            </span>
+</div>
+          <div class="flex items-center gap-2">
 
-            <span
-              class="text-sm px-3 py-1 rounded-full bg-slate-700 whitespace-nowrap"
-            >
-              ${getTier(
-                p["total points"] || 0
-              )}
-            </span>
+  <span class="w-8 text-center font-bold text-lg">
+    ${p["total points"] || 0}
+  </span>
 
-          </div>
+  <span
+    class="text-sm px-3 py-1 rounded-full bg-slate-700 whitespace-nowrap"
+  >
+    ${getTier(
+      p["total points"] || 0
+    )}
+  </span>
+
+</div>
 
         </li>
       `;
@@ -139,33 +140,35 @@ async function loadLeaderboards() {
         getMedal(index);
 
       return `
-        <li class="flex justify-between items-center py-3 border-b border-slate-600">
+        <li class="flex justify-between items-center gap-2 py-3 border-b border-slate-600">
 
-          <div class="flex items-center gap-3">
-            <span class="font-semibold">
-              ${medal}
-            </span>
+          <div class="flex items-center gap-3 flex-1 min-w-0">
 
-            <span>
-              ${p.name || "Missing Name"}
-            </span>
-          </div>
+  <span class="font-semibold">
+    ${medal}
+  </span>
 
-          <div class="flex items-center gap-3">
+  <span class="truncate">
+    ${p.name || "Missing Name"}
+  </span>
 
-            <span class="font-bold text-lg">
-              ${p["total points"] || 0}
-            </span>
+</div>
 
-            <span
-              class="text-sm px-3 py-1 rounded-full bg-slate-700 whitespace-nowrap"
-            >
-              ${getTier(
-                p["total points"] || 0
-              )}
-            </span>
+          <div class="flex items-center gap-2">
 
-          </div>
+  <span class="w-8 text-center font-bold text-lg">
+    ${p["total points"] || 0}
+  </span>
+
+  <span
+    class="text-sm px-3 py-1 rounded-full bg-slate-700 whitespace-nowrap"
+  >
+    ${getTier(
+      p["total points"] || 0
+    )}
+  </span>
+
+</div>
 
         </li>
       `;
