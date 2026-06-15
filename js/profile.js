@@ -402,24 +402,55 @@ async function loadAdminPanel() {
   .join("");
 
   document.getElementById(
-    "submissionList"
-  ).innerHTML =
-  submissions
-  .sort(
-    (a,b) =>
-    (b["total points"] || 0)
-    -
-    (a["total points"] || 0)
-  )
-  .map(
-    p => `
-      <div class="flex justify-between bg-slate-800 p-3 rounded">
+  "submissionList"
+).innerHTML =
+submissions
+.sort(
+  (a,b) =>
+  (b["total points"] || 0)
+  -
+  (a["total points"] || 0)
+)
+.map(
+  p => `
+    <div class="bg-slate-800 p-4 rounded mb-3">
+
+      <div class="flex justify-between font-bold">
+
         <span>${p.name}</span>
-        <span>${p["total points"] || 0} pts</span>
+
+        <span>
+          ${p["total points"] || 0} pts
+        </span>
+
       </div>
-    `
-  )
-  .join("");
+
+      <div class="text-sm text-slate-300 mt-2">
+
+        🏃 Runs:
+        ${p.runs || 0}
+
+        &nbsp;&nbsp;
+
+        💪 Upper:
+        ${p.upper || 0}
+
+        &nbsp;&nbsp;
+
+        🦵 Lower:
+        ${p.lower || 0}
+
+        &nbsp;&nbsp;
+
+        🎾 Court:
+        ${p.court || 0}
+
+      </div>
+
+    </div>
+  `
+)
+.join("");
 }
 
 loadAdminPanel();
