@@ -554,10 +554,9 @@ submissions.sort((a, b) => {
   if (nameCompare !== 0)
     return nameCompare;
 
-  return (
-    a.submittedAt?.seconds || 0
-  ) - (
-    b.submittedAt?.seconds || 0
+  return (a.week || "")
+  .localeCompare(
+    b.week || ""
   );
 
 });
