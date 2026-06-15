@@ -153,19 +153,19 @@ if (submissionSnap.exists()) {
 
 function getTier(points) {
 
-  if (points >= 13) {
-    return "Sexy 🔥";
-  }
-
   if (points >= 9) {
-    return "Very Good ⭐";
+    return "🔥 Elite";
   }
 
-  if (points >= 5) {
-    return "Good 👍";
+  if (points >= 6) {
+    return "⭐ Excellent";
   }
 
-  return "Keep Going";
+  if (points >= 4) {
+    return "👍 Keep Going";
+  }
+
+  return "🔴 Needs Work";
 }
 
 document.getElementById("playerTier")
