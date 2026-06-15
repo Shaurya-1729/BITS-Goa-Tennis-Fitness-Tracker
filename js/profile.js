@@ -110,6 +110,9 @@ if (submissionSnap.exists()) {
   const data =
   submissionSnap.data();
 
+  document.getElementById("notes").value =
+  data.notes || "";
+
   document.getElementById("runs").value =
   data.runs || 0;
 
@@ -210,11 +213,15 @@ document
     document.getElementById("court").value
   ) || 0;
 
+  const notes =
+document.getElementById("notes").value.trim();
+
   const total =
   runs +
   upper +
   lower +
-  court;
+  court ;
+
 
   console.log("PLAYER:", player);
 console.log("BITS ID:", player["bits id"]);
@@ -240,6 +247,7 @@ console.log("WEEK KEY:", weekKey);
       upper,
       lower,
       court,
+      notes,
 
       "total points":
       total,
