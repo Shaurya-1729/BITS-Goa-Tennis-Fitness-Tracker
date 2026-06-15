@@ -508,36 +508,84 @@ if (
       const rows = [];
 
       rows.push([
-        "Name",
-        "BITS ID",
-        "Team",
-        "Runs",
-        "Upper Body",
-        "Lower Body",
-        "Court Drills",
-        "Total Points",
-        "Submitted At"
-      ]);
+  "Name",
+  "BITS ID",
+  "Team",
+  "Week",
+  "Runs",
+  "Upper Body",
+  "Lower Body",
+  "Court Drills",
+  "Total Points",
+  "Submission Date"
+]);
 
-      snapshot.forEach(doc => {
+     const submissions = [];
 
-        const d =
-        doc.data();
+snapshot.forEach(doc => {
 
-        rows.push([
-          d.name || "",
-          d["bits id"] || "",
-          d.team || "",
-          d.runs || 0,
-          d.upper || 0,
-          d.lower || 0,
-          d.court || 0,
-          d["total points"] || 0,
-          d.submittedAt?.toDate?.()
-            ?.toLocaleString?.() || ""
-        ]);
+  const d = doc.data();
 
-      });
+  submissions.push(d);
+
+});
+
+submissions.sort((a, b) => {
+
+  const teamCompare =
+    (a.team || "")
+    .localeCompare(
+      b.team || ""
+    );
+
+  if (teamCompare !== 0)
+    return teamCompare;
+
+  const nameCompare =
+    (a.name || "")
+    .localeCompare(
+      b.name || ""
+    );
+
+  if (nameCompare !== 0)
+    return nameCompare;
+
+  return (
+    a.submittedAt?.seconds || 0
+  ) - (
+    b.submittedAt?.seconds || 0
+  );
+
+});
+
+submissions.forEach(d => {
+
+ rows.push([
+
+  d.name || "",
+
+  d["bits id"] || "",
+
+  d.team || "",
+
+  doc.id.split("_")[1] || "",
+
+  d.runs || 0,
+
+  d.upper || 0,
+
+  d.lower || 0,
+
+  d.court || 0,
+
+  d["total points"] || 0,
+
+  d.submittedAt?.toDate?.()
+    ?.toLocaleString?.() || ""
+
+]);
+
+});
 
       const csv =
       rows
