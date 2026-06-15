@@ -477,9 +477,9 @@ if (
   "Lower Body",
   "Court Drills",
   "Total Points",
+  "Current Status",
   "Submission Date"
 ]);
-
      const submissions = [];
 
 snapshot.forEach(doc => {
@@ -521,32 +521,57 @@ submissions.sort((a, b) => {
 
 });
 
+      function getStatus(points) {
+
+  if (points >= 13) {
+    return "Elite";
+  }
+
+  if (points >= 9) {
+    return "Very Good";
+  }
+
+  if (points >= 5) {
+    return "Good";
+  }
+
+  if (points >= 1) {
+    return "Keep Going";
+  }
+
+  return "Needs Work";
+}
+
 submissions.forEach(d => {
 
   rows.push([
 
-    d.name || "",
+  d.name || "",
 
-    d["bits id"] || "",
+  d["bits id"] || "",
 
-    d.team || "",
+  d.team || "",
 
-    d.week || "",
+  d.week || "",
 
-    d.runs || 0,
+  d.runs || 0,
 
-    d.upper || 0,
+  d.upper || 0,
 
-    d.lower || 0,
+  d.lower || 0,
 
-    d.court || 0,
+  d.court || 0,
 
-    d["total points"] || 0,
+  d["total points"] || 0,
 
-    d.submittedAt?.toDate?.()
-      ?.toLocaleString?.() || ""
+  getStatus(
+    d["total points"] || 0
+  ),
 
-  ]);
+  d.submittedAt?.toDate?.()
+    ?.toLocaleString?.() || ""
+
+]);
 
 
 });
