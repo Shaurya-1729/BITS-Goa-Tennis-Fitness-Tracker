@@ -490,8 +490,8 @@ rows.push([
   "Court Drills",
   "Total Points",
   "Current Status",
-  "Notes",
-  "Submission Date"
+  "Submission Date",
+  "Notes"
 ]);
      const submissions = [];
 
@@ -565,9 +565,10 @@ submissions.forEach(d => {
   d.court || 0,
   d["total points"] || 0,
   getTier(d["total points"] || 0),
-  d.notes || "",
-  d.submittedAt?.toDate?.()
-    ?.toLocaleString?.() || ""
+    d.submittedAt?.toDate?.()
+    ?.toLocaleString?.() || "",
+  d.notes || ""
+ 
 ]);
 
 
