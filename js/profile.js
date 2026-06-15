@@ -148,37 +148,6 @@ if (submissionSnap.exists()) {
 
   `;
 
-  document.getElementById("runs").disabled =
-  true;
-
-  document.getElementById("upper").disabled =
-  true;
-
-  document.getElementById("lower").disabled =
-  true;
-
-  document.getElementById("court").disabled =
-  true;
-
-  document.getElementById("submitBtn").disabled =
-  true;
-
-  document.getElementById("submitBtn").innerText =
-  "Week Locked";
-
-  document.getElementById("submitBtn")
-    .classList.add("opacity-50");
-
-  const msg =
-  document.getElementById(
-    "lockedMessage"
-  );
-
-  if (msg) {
-    msg.classList.remove(
-      "hidden"
-    );
-  }
 }
 
 
@@ -220,15 +189,6 @@ document
 document
 .getElementById("submitBtn")
 .addEventListener("click", async () => {
-
-  if (submissionSnap.exists()) {
-
-    alert(
-      "This week's submission is already locked."
-    );
-
-    return;
-  }
 
   const runs =
   Number(
