@@ -120,6 +120,32 @@ if (submissionSnap.exists()) {
   document.getElementById("court").value =
   data.court || 0;
 
+    document.getElementById(
+    "activitySummary"
+  ).innerHTML = `
+
+    <div class="bg-slate-800 p-4 rounded">
+
+      <div>
+        🏃 Runs: ${data.runs || 0}
+      </div>
+
+      <div>
+        💪 Upper Body: ${data.upper || 0}
+      </div>
+
+      <div>
+        🦵 Lower Body: ${data.lower || 0}
+      </div>
+
+      <div>
+        🎾 Court Drills: ${data.court || 0}
+      </div>
+
+    </div>
+
+  `;
+
   document.getElementById("runs").disabled =
   true;
 
