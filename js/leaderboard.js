@@ -120,7 +120,7 @@ async function loadLeaderboards() {
   </span>
 
   <span
-    class="text-sm px-3 py-1 rounded-full bg-slate-700 whitespace-nowrap"
+    class="text-xs px-2 py-1 rounded-full bg-slate-700 whitespace-nowrap"
   >
     ${getTier(
       p["total points"] || 0
@@ -161,7 +161,7 @@ async function loadLeaderboards() {
   </span>
 
   <span
-    class="text-sm px-3 py-1 rounded-full bg-slate-700 whitespace-nowrap"
+    class="text-xs px-2 py-1 rounded-full bg-slate-700 whitespace-nowrap"
   >
     ${getTier(
       p["total points"] || 0
