@@ -175,11 +175,13 @@ BITS-Goa-Tennis-Fitness-Tracker/
 ├── index.html
 ├── login.html
 ├── profile.html
+├── admin.html
 │
 ├── js/
+│   ├── auth.js
+│   ├── admin.js
 │   ├── firebase-config.js
 │   ├── leaderboard.js
-│   ├── login.js
 │   └── profile.js
 │
 └── README.md
