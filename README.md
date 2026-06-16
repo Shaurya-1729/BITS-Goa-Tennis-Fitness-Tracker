@@ -1,6 +1,6 @@
 # BITS Goa Tennis Fitness Tracker
 
-A web-based fitness tracking and leaderboard platform developed for the BITS Goa Tennis Team to encourage accountability, consistency, and healthy competition throughout the semester.
+A web-based fitness tracking and leaderboard platform developed for the BITS Goa Tennis Team to encourage fitness, accountability, consistency, and healthy competition throughout the semester.
 
 ## Overview
 
