@@ -241,6 +241,6 @@ for members of the BITS Goa Tennis Team throughout the semester.
 
 ## Author
 
-Developed for the BITS Goa Tennis Team fitness program.
+Developed for the BITS Goa Tennis Team by Shaurya Awasthi (Captain 2025-2026).
 
 Built using Firebase, JavaScript, Tailwind CSS, and Netlify.
