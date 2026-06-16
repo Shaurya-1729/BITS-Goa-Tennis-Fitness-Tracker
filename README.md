@@ -169,6 +169,7 @@ The application uses Firestore to store:
 
 ## Project Structure
 
+```text
 BITS-Goa-Tennis-Fitness-Tracker/
 
 ├── index.html
@@ -176,14 +177,13 @@ BITS-Goa-Tennis-Fitness-Tracker/
 ├── profile.html
 │
 ├── js/
-│   ├── auth.js
 │   ├── firebase-config.js
 │   ├── leaderboard.js
 │   ├── login.js
 │   └── profile.js
 │
 └── README.md
-
+```
 ---
 
 ## Workflow
