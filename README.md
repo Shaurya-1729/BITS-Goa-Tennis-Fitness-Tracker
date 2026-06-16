@@ -6,7 +6,7 @@ A web-based fitness tracking and leaderboard platform developed for the BITS Goa
 
 The BITS Goa Tennis Fitness Tracker allows players to log weekly fitness activities, monitor their progress, and compare performance through live team leaderboards. Team captains and administrators can track participation, identify missing submissions, and export semester data for analysis.
 
-The system was designed to replace manual tracking methods with a centralized platform that is accessible from any device.
+The system was designed to replace manual tracking methods (ex. WhatsApp data etc.) with a centralized platform that is accessible from any device.
 
 ---
 
