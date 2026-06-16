@@ -171,20 +171,17 @@ The application uses Firestore to store:
 
 ```text
 BITS-Goa-Tennis-Fitness-Tracker/
-
+│
 ├── index.html
 ├── login.html
 ├── profile.html
-├── admin.html
+├── README.md
 │
-├── js/
-│   ├── auth.js
-│   ├── admin.js
-│   ├── firebase-config.js
-│   ├── leaderboard.js
-│   └── profile.js
-│
-└── README.md
+└── js/
+    ├── auth.js
+    ├── firebase-config.js
+    ├── leaderboard.js
+    └── profile.js
 ```
 ---
 
