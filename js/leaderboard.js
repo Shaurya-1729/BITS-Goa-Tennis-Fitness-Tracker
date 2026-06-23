@@ -29,6 +29,10 @@ function getWeekKey() {
 
   return monday;
 }
+const weekKey =
+  getWeekKey()
+    .toISOString()
+    .split("T")[0];
 
 function getTier(points) {
 
@@ -59,44 +63,94 @@ function getMedal(index) {
 
 async function loadLeaderboards() {
 
+  async function loadLeaderboards() {
+
+  // Get all players
+  const playersSnap =
+    await getDocs(
+      collection(db, "players")
+    );
+
+  // Get all submissions
   const submissionsSnap =
-  await getDocs(
-    collection(db, "weeklySubmissions")
-  );
+    await getDocs(
+      collection(db, "weeklySubmissions")
+    );
 
-const boys = [];
-const girls = [];
+  // Map current week's submissions
+  const weekSubmissions = {};
 
-submissionsSnap.forEach((doc) => {
+  submissionsSnap.forEach(doc => {
 
-  const player = doc.data();
+    if (
+      doc.id.endsWith(
+        "_" + weekKey
+      )
+    ) {
 
-  if (
-  doc.id.endsWith("_" + weekKey)
-) {
+      const data =
+        doc.data();
 
-    if (player.team === "boys") {
+      weekSubmissions[
+        data["bits id"]
+      ] = data;
+    }
+  });
 
-      boys.push(player);
+  const boys = [];
+  const girls = [];
 
-    } else if (player.team === "girls") {
+  // Create leaderboard entries
+  playersSnap.forEach(doc => {
 
-      girls.push(player);
+    const player =
+      doc.data();
+
+    // Use this week's submission if available
+    const current =
+      weekSubmissions[
+        player["bits id"]
+      ];
+
+    const leaderboardPlayer = {
+
+      ...player,
+
+      "total points":
+        current?.["total points"] || 0
+    };
+
+    if (
+      player.team === "boys"
+    ) {
+
+      boys.push(
+        leaderboardPlayer
+      );
+
+    } else if (
+      player.team === "girls"
+    ) {
+
+      girls.push(
+        leaderboardPlayer
+      );
     }
 
-  }
+  });
 
-});
-
+  // Sort by weekly points
   boys.sort(
     (a, b) =>
-      (b["total points"] || 0) -
+      (b["total points"] || 0)
+      -
       (a["total points"] || 0)
   );
 
   girls.sort(
     (a, b) =>
-      (b["total points"] || 0) -
+      (b["total points"] || 0)
+      -
       (a["total points"] || 0)
   );
 
@@ -107,37 +161,35 @@ submissionsSnap.forEach((doc) => {
         getMedal(index);
 
       return `
-        <li class="flex justify-between items-center gap-2 py-3 border-b border-slate-600">
+<li class="flex justify-between items-center gap-2 py-3 border-b border-slate-600">
 
-          <div class="flex items-center gap-3 flex-1 min-w-0">
+<div class="flex items-center gap-3 flex-1 min-w-0">
 
-  <span class="font-semibold">
-    ${medal}
-  </span>
+<span class="font-semibold">
+${medal}
+</span>
 
-  <span class="truncate">
-    ${p.name || "Missing Name"}
-  </span>
-
-</div>
-          <div class="flex items-center gap-2">
-
-  <span class="w-8 text-center font-bold text-lg">
-    ${p["total points"] || 0}
-  </span>
-
-  <span
-    class="text-xs px-2 py-1 rounded-full bg-slate-700 whitespace-nowrap"
-  >
-    ${getTier(
-      p["total points"] || 0
-    )}
-  </span>
+<span class="truncate">
+${p.name}
+</span>
 
 </div>
 
-        </li>
-      `;
+<div class="flex items-center gap-2">
+
+<span class="w-8 text-center font-bold text-lg">
+${p["total points"] || 0}
+</span>
+
+<span class="text-xs px-2 py-1 rounded-full bg-slate-700 whitespace-nowrap">
+${getTier(p["total points"] || 0)}
+</span>
+
+</div>
+
+</li>
+`;
+
     }).join("");
 
   girlsContainer.innerHTML =
@@ -147,39 +199,37 @@ submissionsSnap.forEach((doc) => {
         getMedal(index);
 
       return `
-        <li class="flex justify-between items-center gap-2 py-3 border-b border-slate-600">
+<li class="flex justify-between items-center gap-2 py-3 border-b border-slate-600">
 
-          <div class="flex items-center gap-3 flex-1 min-w-0">
+<div class="flex items-center gap-3 flex-1 min-w-0">
 
-  <span class="font-semibold">
-    ${medal}
-  </span>
+<span class="font-semibold">
+${medal}
+</span>
 
-  <span class="truncate">
-    ${p.name || "Missing Name"}
-  </span>
-
-</div>
-
-          <div class="flex items-center gap-2">
-
-  <span class="w-8 text-center font-bold text-lg">
-    ${p["total points"] || 0}
-  </span>
-
-  <span
-    class="text-xs px-2 py-1 rounded-full bg-slate-700 whitespace-nowrap"
-  >
-    ${getTier(
-      p["total points"] || 0
-    )}
-  </span>
+<span class="truncate">
+${p.name}
+</span>
 
 </div>
 
-        </li>
-      `;
+<div class="flex items-center gap-2">
+
+<span class="w-8 text-center font-bold text-lg">
+${p["total points"] || 0}
+</span>
+
+<span class="text-xs px-2 py-1 rounded-full bg-slate-700 whitespace-nowrap">
+${getTier(p["total points"] || 0)}
+</span>
+
+</div>
+
+</li>
+`;
+
     }).join("");
+
 }
 
 const weekStart =
