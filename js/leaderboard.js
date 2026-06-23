@@ -72,8 +72,8 @@ submissionsSnap.forEach((doc) => {
   const player = doc.data();
 
   if (
-    doc.id.endsWith("_" + weekKey.toISOString().split("T")[0])
-  ) {
+  doc.id.endsWith("_" + weekKey)
+) {
 
     if (player.team === "boys") {
 
