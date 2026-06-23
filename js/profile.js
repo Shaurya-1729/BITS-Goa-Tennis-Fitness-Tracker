@@ -58,11 +58,24 @@ function getWeekKey() {
 
   monday.setDate(diff);
 
-  return monday
-    .toISOString()
-    .split("T")[0];
+  const year =
+    monday.getFullYear();
+
+  const month =
+    String(
+      monday.getMonth() + 1
+    ).padStart(2, "0");
+
+  const date =
+    String(
+      monday.getDate()
+    ).padStart(2, "0");
+
+  return `${year}-${month}-${date}`;
 }
 const weekKey = getWeekKey();
+
+console.log("Week key:", weekKey);
 
 const weekStart =
 new Date(weekKey);
