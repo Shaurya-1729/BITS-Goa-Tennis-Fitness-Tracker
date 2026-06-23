@@ -59,17 +59,21 @@ function getMedal(index) {
 
 async function loadLeaderboards() {
 
-  const snapshot =
-    await getDocs(
-      collection(db, "players")
-    );
+  const submissionsSnap =
+  await getDocs(
+    collection(db, "weeklySubmissions")
+  );
 
-  const boys = [];
-  const girls = [];
+const boys = [];
+const girls = [];
 
-  snapshot.forEach((doc) => {
+submissionsSnap.forEach((doc) => {
 
-    const player = doc.data();
+  const player = doc.data();
+
+  if (
+    doc.id.endsWith("_" + weekKey.toISOString().split("T")[0])
+  ) {
 
     if (player.team === "boys") {
 
@@ -79,7 +83,10 @@ async function loadLeaderboards() {
 
       girls.push(player);
     }
-  });
+
+  }
+
+});
 
   boys.sort(
     (a, b) =>
