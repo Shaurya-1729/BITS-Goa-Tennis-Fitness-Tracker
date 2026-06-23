@@ -63,8 +63,6 @@ function getMedal(index) {
 
 async function loadLeaderboards() {
 
-  async function loadLeaderboards() {
-
   // Get all players
   const playersSnap =
     await getDocs(
